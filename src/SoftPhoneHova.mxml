@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:view="com.view.*"
+					   width="300" height="420" maxHeight="420" maxWidth="300"
+					   preinitialize="presetup()"
+					   creationComplete="init()">
+	<fx:Style source="assets/css/style.css"/>
+	<fx:Script source="com/core/init.as" />
+	<fx:Declarations>
+		<!--<fx:XML id="config" source="assets/config/config.xml" />-->
+		<s:HTTPService id="configFileService" url="config/config.xml" 
+					   result="configFileService_resultHandler(event)"
+					   fault="configFileService_faultHandler(event)"
+					   resultFormat="e4x" />
+	</fx:Declarations>
+	<view:SoftPhoneView id="softPhone" width="100%" height="100%"/>
+</s:WindowedApplication>

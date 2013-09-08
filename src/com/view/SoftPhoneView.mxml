@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view:SoftPhone xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:view="com.view.*" creationComplete="init()"
+		 width="400" height="500">
+	<fx:Declarations>
+		<mx:SoundEffect id="dtmfOne" useDuration="true" duration="700"  autoLoad="true" source="{dtmf1}"/>
+		<mx:SoundEffect id="dtmfTwo" useDuration="true" duration="700"  autoLoad="true" source="{dtmf2}"/>
+		<mx:SoundEffect id="dtmfThree" useDuration="true" duration="700"  autoLoad="true" source="{dtmf3}"/>
+		<mx:SoundEffect id="dtmfFour"  useDuration="true" duration="700"  autoLoad="true" source="{dtmf4}"/>
+		<mx:SoundEffect id="dtmfFive"  useDuration="true" duration="700"  autoLoad="true" source="{dtmf5}"/>
+		<mx:SoundEffect id="dtmfSix"  useDuration="true" duration="700"  autoLoad="true" source="{dtmf6}"/>
+		<mx:SoundEffect id="dtmfSeven"  useDuration="true" duration="700"  autoLoad="true" source="{dtmf7}"/>
+		<mx:SoundEffect id="dtmfEight"  useDuration="true" duration="700"  autoLoad="true" source="{dtmf8}"/>
+		<mx:SoundEffect id="dtmfNine"   useDuration="true" duration="700"  autoLoad="true" source="{dtmf9}"/>
+		<mx:SoundEffect id="dtmfZero"  useDuration="true"  duration="700"  autoLoad="true" source="{dtmf0}"/>    	
+		<mx:SoundEffect id="dtmfHashEffect" useDuration="true" duration="700"   autoLoad="true" source="{dtmfHash}"/>
+		<mx:SoundEffect id="dtmfStarEffect"   useDuration="true" duration="700"  autoLoad="true" source="{dtmfStar}"/>	
+		
+		<s:Fade id="fadeOut" duration="1000" alphaFrom="1.0" alphaTo="0.0" />
+		<s:Fade id="fadeIn" duration="1000" alphaFrom="0.0" alphaTo="1.0"/>
+	</fx:Declarations>
+	<mx:ViewStack id="vwsPhone" width="100%" height="100%">
+		<s:NavigatorContent width="100%" height="100%" id="LOGIN" color="#000000" hideEffect="{fadeOut}" showEffect="{fadeIn}">
+			<s:BitmapImage source="assets/images/timthumb.png" x="120" y="30"/>
+			<s:VGroup color="#000000" width="100%" height="100%" 
+					  verticalAlign="middle" horizontalAlign="center">
+				<s:VGroup gap="0">
+					<s:Label text="Usuario" fontFamily="Helvetica" fontSize="16"/>
+					<s:TextInput id="txtUser" prompt="Usuario" width="250" height="35" borderVisible="false"
+								 fontFamily="Helvetica" fontSize="16"/>
+				</s:VGroup>
+				<s:VGroup gap="0">
+					<s:Label text="Contaseña" fontFamily="Helvetica" fontSize="16"/>
+					<s:TextInput id="txtPass" prompt="Contraseña" width="250" height="35" borderVisible="false"
+								 fontFamily="Helvetica" fontSize="16" displayAsPassword="true"/>
+				</s:VGroup>
+				<s:VGroup gap="0">
+					<s:Button label="Acceder" width="250" height="40" styleName="btnAnswer" 
+							  buttonMode="true" click="logIn()" fontSize="18"/>
+				</s:VGroup>
+			</s:VGroup>
+		</s:NavigatorContent>
+		<s:NavigatorContent id="PHONE" backgroundColor="#F2F2F2" hideEffect="{fadeOut}" showEffect="{fadeIn}">
+			<s:HGroup width="100%" height="100%">
+				<mx:Canvas width="100%" height="100%"  horizontalScrollPolicy="off" verticalScrollPolicy="off">
+					<s:VGroup width="100%" height="100%" paddingBottom="15" paddingLeft="15" paddingRight="15" paddingTop="15">
+						<s:HGroup width="100%" horizontalAlign="center">
+							<mx:Canvas width="239" height="78" borderVisible="false" borderStyle="solid" cornerRadius="10" backgroundColor="#F0F7FE"  borderColor="#191919" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+								<s:VGroup width="100%" height="100%" paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3">
+									<s:HGroup width="100%" horizontalAlign="center">
+										<s:Label id="txtRegister" width="51" height="20" />
+										<s:Label id="txtStatus" width="158" height="20"/>
+									</s:HGroup>
+									<s:HGroup width="100%" horizontalAlign="center">
+										<s:Label id="dialnumTxt" width="200" height="20" fontWeight="normal" fontSize="17"  />
+										<!--<s:BitmapImage source="assets/images/leftarrow32.png" height="32" width="32" />-->
+										<!--<mx:Text x="10" y="30" width="215" id="dialnumTxt" fontWeight="normal" fontSize="12" fontFamily="Verdana"/>-->
+									</s:HGroup>
+									<s:HGroup width="100%" paddingLeft="10" paddingRight="10" verticalAlign="middle">
+										<s:Label id="lblExt" text="Ext. {ext}" color="green"/>
+										<s:Spacer width="100%" />
+										<s:Image source="{gray}" id="indicatorIcon"/>
+										<s:Label id="txtTime" width="51" height="20" textAlign="right" />
+									</s:HGroup>
+								</s:VGroup>
+							</mx:Canvas>
+						</s:HGroup>
+						<s:HGroup width="100%" height="100%">
+							<s:VGroup width="100%" verticalAlign="middle" horizontalAlign="center" height="100%">
+								<s:HGroup>
+									<s:Button id="cmdOne"  label="1" styleName="btnPhone" mouseDownEffect="{dtmfOne}" click="doCallChar('1');" 
+											  width="50" height="50" buttonMode="true" />
+									<s:Button id="cmdTwo" label="2" styleName="btnPhone" mouseDownEffect="{dtmfTwo}" click="doCallChar('2');"
+											  width="50" height="50" buttonMode="true"/>
+									<s:Button id="cmdThree" label="3" styleName="btnPhone" mouseDownEffect="{dtmfThree}" click="doCallChar('3');"
+											  width="50" height="50" buttonMode="true"/>
+								</s:HGroup>
+								<s:HGroup>
+									<s:Button id="cmdFour" label="4" styleName="btnPhone" mouseDownEffect="{dtmfFour}" click="doCallChar('4');"
+											  width="50" height="50" buttonMode="true"/>
+									<s:Button id="cmdFive" label="5" styleName="btnPhone" mouseDownEffect="{dtmfFive}" click="doCallChar('5');"
+											  width="50" height="50" buttonMode="true"/>
+									<s:Button id="cmdSix" label="6" styleName="btnPhone" mouseDownEffect="{dtmfSix}" click="doCallChar('6');"
+											  width="50" height="50" buttonMode="true"/>
+								</s:HGroup>
+								<s:HGroup>
+									<s:Button id="cmdSeven" label="7" styleName="btnPhone" mouseDownEffect="{dtmfSeven}" click="doCallChar('7');"
+											  width="50" height="50" buttonMode="true"/>
+									<s:Button id="cmdEight" label="8" styleName="btnPhone" mouseDownEffect="{dtmfEight}" click="doCallChar('8');"
+											  width="50" height="50" buttonMode="true"/>
+									<s:Button id="cmdNine" label="9" styleName="btnPhone" mouseDownEffect="{dtmfNine}" click="doCallChar('9');"
+											  width="50" height="50" buttonMode="true"/>
+								</s:HGroup>
+								<s:HGroup>
+									<s:Button id="cmdPound" label="#" styleName="btnPhone" mouseDownEffect="{dtmfHashEffect}" click="doCallChar('#');"
+											  width="50" height="50" buttonMode="true"/>
+									<s:Button id="cmdZero" label="0" styleName="btnPhone" mouseDownEffect="{dtmfZero}" click="doCallChar('0');"
+											  width="50" height="50" buttonMode="true"/>
+									<s:Button id="cmdStar" label="*" styleName="btnPhone" mouseDownEffect="{dtmfStarEffect}" click="doCallChar('*');"
+											  width="50" height="50" buttonMode="true"/>
+								</s:HGroup>
+								<s:HGroup verticalAlign="middle" width="100%" horizontalAlign="center">
+									<s:Image source="assets/images/lock32.png" buttonMode="true" alpha="0.5" click="resetPhone()" width="38" height="38"/>
+									<s:HGroup gap="-6">
+										<s:Button id="btnAnswer"  label="Llamar" width="165" height="50" buttonMode="true" 
+												  styleName="btnAnswer" fontSize="{(inCall)?14:18}" click="doCall()"/>
+										<s:Button id="btnCancel"  label="Cancelar" width="165" height="50" buttonMode="true" 
+												  styleName="btnCancel" fontSize="{(inCall)?14:18}" includeInLayout="false" visible="false" 
+												  click="hangUp()"/>
+									</s:HGroup>
+									<s:Image id="volumeIcon" source="assets/images/speaker32.png" buttonMode="true" alpha="0.5" click="showVolumen()" enabled="false" />
+								</s:HGroup>
+								<s:HGroup id="sliderVolume" visible="false" hideEffect="{fadeOut}" showEffect="{fadeIn}">
+									<s:HSlider id="volumeLevel"  width="165" minimum="0" maximum="100" value="40" 
+											   liveDragging="true"  thumbDrag="setVolume()"/>
+								</s:HGroup>
+							</s:VGroup>
+						</s:HGroup>		
+					</s:VGroup>
+				</mx:Canvas>
+			</s:HGroup>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+</view:SoftPhone>

@@ -1,0 +1,31 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+.labelForms{
+	textAlign:right;
+	fontSize: 13;
+	color: "#E98F02";
+	fontWeight:bold;
+	verticalAlign:middle;
+}
+
+s|Button.btnPhone{
+	fontFamily: Helvetica;
+	skinClass:ClassReference("assets.skins.SkingButtonNumbers");
+}
+
+s|Button.btnAnswer{
+	fontFamily: Helvetica;
+	skinClass:ClassReference("assets.skins.SkingButtonAnswer");
+}
+
+s|Button.btnCancel{
+	fontFamily: Helvetica;
+	skinClass:ClassReference("assets.skins.SkingButtonCancel");
+}
+
+s|Label
+{
+	fontFamily: Helvetica;
+}
